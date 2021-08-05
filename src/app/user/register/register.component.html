@@ -1,0 +1,52 @@
+<div class="user-pages-wrapper">
+    <div class="container">
+        <div class="user-form-wrapper">
+            <h2>Sign up</h2>
+            <span>Already have an account? <button routerLink="/login" mat-button color="primary">Sign
+                    in</button></span>
+
+            <div class="register-form">
+
+                <form #form="ngForm" (ngSubmit)="registerHandler(form)">
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" name="name" #nameInput="ngModel" ngModel required>
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-hint *ngIf="nameInput.invalid && nameInput.touched" class="formError">Name is required!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" name="email" #emailInput="ngModel" ngModel required pattern="^\S+@\S+\.\S+$">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-hint *ngIf="emailInput.invalid && emailInput.touched" class="formError">Invalid Email!</mat-hint>
+                            
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" type="password" name="password"  #passwordInput="ngModel" ngModel required minlength="6">
+                            <mat-icon matSuffix>password</mat-icon>
+                            <mat-hint *ngIf="passwordInput.invalid && passwordInput.touched" class="formError">Pass. shold be more than 6 characters!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Repeat Password</mat-label>
+                            <input matInput placeholder="Repeat Password" type="password" name="rePassword"  #rePasswordInput="ngModel" ngModel  appPasswordsMatch="password" required minlength="6" passwordsMatch required>
+                            <mat-icon matSuffix>password</mat-icon>
+                            <mat-hint *ngIf="rePasswordInput.errors?.minlength && rePasswordInput.touched || rePasswordInput.errors?.required && rePasswordInput.touched" class="formError">Pass. shold be more than 6 characters!</mat-hint>
+                            <mat-hint *ngIf="rePasswordInput.errors?.passwordsMatch" class="formError">Password don't match!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <button class="registerBtn" mat-raised-button color="primary"> Create your free account </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,32 @@
+
+<div class="dashboard-container">
+
+    <div class="dashboard-menu">
+      <div class="dashboard-user">
+        <div class="dashboard-user-image-container">
+          <img mat-card-image class="dashboard-user-image" src="https://i.pinimg.com/originals/45/6f/30/456f302bf3a276d1c9d6917d6d56d0dd.jpg" alt="Photo of a Shiba Inu">
+        </div>
+        <div class="dashboard-user-info">
+          <h3 class="dashbord-user-name">{{username}}</h3>
+          <p class="dashbord-user-email">{{userEmail}}</p>
+        </div>
+        <button routerLink="/dashboard/create" mat-raised-button color="accent">Submit Add</button>
+       
+        </div>
+
+        <div class="dashboard-nav">
+          <mat-list role="list">
+                <a routerLink="/dashboard/profile"><mat-list-item role="listitem" class="dashboard-link"><mat-icon aria-hidden="false" class="dashboard-menu-icon">account_circle</mat-icon> Profile</mat-list-item></a>
+                <a routerLink="/dashboard/my-properties"><mat-list-item role="listitem" class="dashboard-link"><mat-icon aria-hidden="false" class="dashboard-menu-icon">list_alt</mat-icon>My properties</mat-list-item></a>
+                <a routerLink="/dashboard/favorites"><mat-list-item role="listitem" class="dashboard-link"><mat-icon aria-hidden="false" class="dashboard-menu-icon">favorite</mat-icon>My favorite</mat-list-item></a>
+            </mat-list>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+      <router-outlet></router-outlet>
+    </div>
+    
+  </div>
+  
+

@@ -1,0 +1,25 @@
+<div class="properti-card">
+  <img class="property-card-image" src="{{property.imageUrl}}" alt="My First App">
+  <span class="hot-offer">HOT OFFER</span>
+  <div class="property-card-content">
+    <mat-card-title>{{property.title}}</mat-card-title>
+    <span class="card-adress">
+      <mat-icon aria-hidden="true" class="mat-icon">location_on</mat-icon>{{property.adress}}
+    </span>
+    <span class="card-price">${{property.price}}</span>
+    <div class="property-card-details">
+      <p class="card-property-size">Property size<span style="float: right;">{{property.size}} ft²</span></p>
+      <p class="card-property-size">Bedrooms<span style="float: right;">{{property.bedrooms}}</span></p>
+      <p class="card-property-size">Bathrooms<span style="float: right;">{{property.bathrooms}}</span></p>
+      <p class="card-property-size">Garages<span style="float: right;">{{property.garages}}</span></p>
+    </div>
+  </div>
+  <div class="property-card-action">
+    <button (click)="onLike(property._ownerId, property._id)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" class="card-btn">DETAILS</button>
+    
+  </div>
+
+</div>

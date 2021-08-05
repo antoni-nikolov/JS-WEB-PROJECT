@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="create-wrapper">
+    <h2>Add Property</h2>
+
+    <div class="login-form">
+
+      <form #form="ngForm" (ngSubmit)="onCreateSubmit(form)">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>title</mat-label>
+            <input matInput placeholder="title" name="title" #titleInput="ngModel" ngModel required>
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Adress</mat-label>
+            <input matInput placeholder="Adress" name="adress" #adressInput="ngModel" ngModel required>
+            <mat-icon matSuffix>location</mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Price" name="price" #priceInput="ngModel" ngModel required>
+            <mat-icon matSuffix>price</mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Property size</mat-label>
+            <input matInput placeholder="Property size" name="size" #sizeInput="ngModel" ngModel required>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Bedrooms</mat-label>
+            <input matInput placeholder="Bedrooms" name="bedrooms" #bedroomsInput="ngModel" ngModel required>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Bathrooms</mat-label>
+            <input matInput placeholder="Bathrooms" name="bathrooms" #bathroomsInput="ngModel" ngModel required>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Garages</mat-label>
+            <input matInput placeholder="Garages" name="garages" #garagesInput="ngModel" ngModel required>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Image URL</mat-label>
+            <input matInput placeholder="Image URL" name="imageUrl" #imageUrlInput="ngModel" ngModel required>
+            <mat-icon matSuffix></mat-icon>
+            <mat-hint class="formError">Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        
+        <button mat-raised-button color="primary"> Create </button>
+        
+      </form>
+
+    </div>
+  </div>
+</div>

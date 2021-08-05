@@ -1,0 +1,76 @@
+.dashboard-container{
+    height: 100vh;
+    display: flex;
+    margin-bottom: -8px;
+    
+}
+.dashboard-menu{
+    position: fixed;
+    height: 100%;
+    width: 20%;
+    padding: 10px;
+    background: #15294d;
+    
+}
+
+.dashboard-content{
+    
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto;
+
+}
+
+.dashboard-nav{
+    color: white;
+}
+
+.dashboard-link{
+    color: rgb(224, 224, 224);
+    font-size: 17px;
+}
+
+.dashboard-submit-btn{
+    text-align: center;
+}
+
+
+.properti-card{
+    margin: 10px;
+    background-size: cover;
+}
+
+.dashboard-menu-icon{
+    margin-right: 15px;
+    
+}
+
+.dashboard-user-info{
+    margin-bottom: 20px;
+}
+
+.dashboard-user{
+    margin-top: 130px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+    
+}
+.dashbord-user-name{
+    font-size: 13px;
+}
+
+.dashboard-user-image-container{
+    
+    margin: 10px;
+    background-size: cover;
+    border-radius: 50%;
+    
+}
+
+.dashboard-user-image{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+
+}

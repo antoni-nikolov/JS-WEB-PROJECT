@@ -1,0 +1,72 @@
+.properti-card{
+  //width: 25%;
+  margin: 10px;
+  background-size: cover;
+  background-size: cover;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  padding: 16px;
+  border-radius: 15px;
+}
+
+.property-card-image{
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  width: calc(100% + 32px);
+  margin: -16px -16px 16px -16px;
+  max-height: 200px;
+   
+}
+
+.card-adress{
+    margin: 8px 0;
+    font-size: 15px;
+    
+    display: flex;
+    color: rgb(102, 102, 102);
+  }
+      
+  .card-price{ 
+    margin-bottom: 8px;
+    color: #125699;
+    font-size: 21px;
+    font-weight: 600;
+  }
+
+  .property-card-details{
+    margin: 10px 0;
+  }
+  
+  .card-property-size{
+    border-bottom: 1px dotted gray;
+    margin-bottom: 10px;
+  }
+  
+  .card-btn{
+    float: right;
+  }
+  
+  .hot-offer{
+    position: relative;
+    background: #ff4081;
+    padding: 7px 15px;
+    color: white;
+    top: -25px;
+  }
+  
+  
+  .featured{
+    position: relative;
+    background: #1976d2;
+    padding: 7px 15px;
+    color: white;
+    top: -25px;
+  }
+
+  @media screen and (max-width: 767px) {
+
+    .properti-card{
+      width: 80%;
+     margin: 20px auto;
+      
+    }
+}

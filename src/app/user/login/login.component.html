@@ -1,0 +1,37 @@
+<div class="user-pages-wrapper">
+  <div class="container">
+    <div class="user-form-wrapper">
+      <h2>Sign in</h2>
+      <span>Don't have an account? <button routerLink="/register" mat-button color="primary">Sign up</button></span>
+
+      <div class="login-form">
+       
+        <form #form="ngForm" (ngSubmit)="loginHandler(form)">
+
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" name="email" #emailInput="ngModel" ngModel required pattern="^\S+@\S+\.\S+$">
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-hint *ngIf="emailInput.invalid && emailInput.touched" class="formError">Email is not valid!</mat-hint>
+            </mat-form-field>
+              
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Password" type="password" name="password" #passwordInput="ngModel" ngModel required minlength="6">
+              <mat-icon matSuffix>password</mat-icon>
+              <mat-hint *ngIf="passwordInput.invalid && passwordInput.touched" class="formError">Password shold be more than 6 characters!</mat-hint>
+            </mat-form-field>
+          </p>
+
+          <button class="loginBtn" mat-raised-button color="primary"> Sign in </button>
+        </form>
+
+      </div>
+      <span>
+      </span>
+    </div>
+  </div>
+</div>

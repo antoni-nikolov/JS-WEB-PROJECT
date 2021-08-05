@@ -1,0 +1,16 @@
+<section id="new-properties">
+    <div class="container">
+      <h2>Profile</h2>
+  
+      <button (click)="toggleActive()">Toggle</button>
+      <ng-template #isActiveTemplate>
+        Is Active
+      </ng-template>
+      <ng-template #isNotActiveTemplate>
+        Is not Active
+      </ng-template>
+
+      <ng-container *ngTemplateOutlet="isActive ? isActiveTemplate : isNotActiveTemplate"></ng-container>
+  
+    </div>
+  </section>
