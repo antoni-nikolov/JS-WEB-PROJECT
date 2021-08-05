@@ -18,6 +18,7 @@ import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogService } from './catalog-service';
 import { UserService } from './user-service.service';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { UserService } from './user-service.service';
     AppComponent,
     HomeComponent,
     PropertiesComponent,
+    DetailsComponent,
     
   ],
   imports: [

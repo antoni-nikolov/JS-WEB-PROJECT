@@ -15,11 +15,11 @@
     </div>
   </div>
   <div class="property-card-action">
-    <button (click)="onLike(property._ownerId, property._id)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+    <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-raised-button color="primary" class="card-btn">DETAILS</button>
-    
+    <button routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button color="primary" class="card-btn">DETAILS</button>
+    <!--(click)="onLike(property._ownerId, property._id)"-->
   </div>
 
 </div>

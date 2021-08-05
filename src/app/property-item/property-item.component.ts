@@ -20,11 +20,11 @@ export class PropertyItemComponent {
     
     
   }
-  onLike(_ownerId: string, _id?: string): void{
-    let localId = this.userService.getUserData().localId;
-    console.log('ITS WORKED LIKE', _ownerId, _id);
-    this.catalogService.like(_ownerId, _id, localId)
-  }
+  //onLike(_ownerId: string, _id?: string): void{
+  //  let localId = this.userService.getUserData().localId;
+  //  console.log('ITS WORKED LIKE', _ownerId, _id);
+  //  this.catalogService.like(_ownerId, _id, localId)
+  //}
 
 
 }

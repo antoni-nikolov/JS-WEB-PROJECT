@@ -1,4 +1,5 @@
 import { Component, } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/user-service.service';
 
 @Component({
@@ -13,12 +14,14 @@ export class HeaderComponent {
 
   constructor(
     private userService: UserService,
+    private router: Router
   ) { 
     this.isAuthenticated = Boolean(this.userService.getUserData().isAuthenticated)
   }
 
   logoutHandler() {
-
+    this.userService.logout();
+    this.router.navigate(['/login']);
   }
 
 

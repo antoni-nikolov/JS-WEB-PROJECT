@@ -9,9 +9,8 @@
     
     </div>
       <nav class="nav">  
-        <div *ngIf="isAuthenticated; then user else guest"></div>
         <ng-template #user>
-
+          
           <a class="navLink" routerLink=''>Home</a>
           <a class="navLink" routerLink="/properties" >Properties</a>
           <button routerLink="/dashboard/my-properties" mat-raised-button color="accent">Dashboard</button>
@@ -29,9 +28,10 @@
             <button routerLink="/register" mat-menu-item>Register</button>
           </mat-menu>
           <button routerLink="/login" mat-raised-button color="accent">Submit Add</button>
-      
+          
         </ng-template>
-       
+        <ng-container *ngTemplateOutlet="isAuthenticated ? user : guest"></ng-container>
+        
         
         
       </nav>

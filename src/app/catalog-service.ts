@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
 import { IProperty } from './shared/interfaces/property';
 
 @Injectable({
@@ -51,23 +50,28 @@ export class CatalogService {
     return this.http.get<IProperty>(`${this.urlBuilder(_id).ownerUrl}`, {withCredentials: false});
   }
 
-  edit(_ownerId: string, _id?: string, data?: any){
-    this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, data)
+  getById(_ownerId: string, _id: string ){
+    return this.http.get<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`)
 
   }
 
-  like(_ownerId: string, _id?: string, user?: string): void{
-    
-    this.http.get<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, {withCredentials: false})
-    .subscribe(data => this.validate(data.likes, user!))
-    
-  }
+  //edit(_ownerId: string, _id?: string, data?: any){
+  //  this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, data)
+//
+  //}
 
-  validate(data: any, user: string): void {
-
-    data = data.push({_id: user})
-    console.log(data);
-    
-  }
+  //like(_ownerId: string, _id?: string, user?: string): void{
+  //  
+  //  this.http.get<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, {withCredentials: false})
+  //  .subscribe(data => this.validate(data.likes, user!))
+  //  
+  //}
+//
+  //validate(data: any, user: string): void {
+//
+  //  console.log(data);
+  //  data = data.push({_id: user})
+  //  
+  //}
     
 }
