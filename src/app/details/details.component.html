@@ -1,25 +1,76 @@
-<div class="properti-card">
-    <img class="property-card-image" src="{{property.imageUrl}}" alt="My First App">
-    <span class="hot-offer">HOT OFFER</span>
-    <div class="property-card-content">
-      <mat-card-title>{{property.title}}</mat-card-title>
-      <span class="card-adress">
-        <mat-icon aria-hidden="true" class="mat-icon">location_on</mat-icon>{{property.adress}}
-      </span>
-      <span class="card-price">${{property.price}}</span>
-      <div class="property-card-details">
-        <p class="card-property-size">Property size<span style="float: right;">{{property.size}} ft²</span></p>
-        <p class="card-property-size">Bedrooms<span style="float: right;">{{property.bedrooms}}</span></p>
-        <p class="card-property-size">Bathrooms<span style="float: right;">{{property.bathrooms}}</span></p>
-        <p class="card-property-size">Garages<span style="float: right;">{{property.garages}}</span></p>
-      </div>
+<div class="row">
+    <div class="column left">
+        <div class="description-content">
+            <div class="main-info">
+                <h2>{{property.title}}</h2>
+                <span>
+                    <mat-icon aria-hidden="true" class="mat-icon">location_on</mat-icon>{{property.adress}}
+                </span>
+                <span class="properti-price">${{property.price}} /month</span>
+            </div>
+            <div class="description-img">
+                <img class="property-image" src="{{property.imageUrl}}" alt="My First App">
+            </div>
+            <div class="property-details">
+                <h3 class="property-details-title">Property Details</h3>
+                <p class="property-size">Property size: <span>{{property.size}} ft²</span>
+                </p>
+                <p class="property-size">Bedrooms: <span>{{property.bedrooms}}</span></p>
+                <p class="property-size">Bathrooms: <span>{{property.bathrooms}}</span></p>
+                <p class="property-size">Garages: <span>{{property.garages}}</span></p>
+            </div>
+        </div>
     </div>
-    <div class="property-card-action">
-      <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button color="primary" class="card-btn">DETAILS</button>
-      <!--(click)="onLike(property._ownerId, property._id)"-->
+    <div class="column right">
+        <div class="owner-content">
+            <div class="owner-img">
+                <img class="owner-image" src="{{property.imageUrl}}" alt="My First App">
+            </div>
+            <div class="owner-details">
+                <h2 class="owner-name">Owner: Michelle Ormond</h2>
+                <p class="owner-email">
+                    <mat-icon class="owner-icons">email</mat-icon> test@yahoo.con
+                </p>
+                <p class="owner-phone">
+                    <mat-icon class="owner-icons">phone</mat-icon> (+359) 895000187
+                </p>
+
+            </div>
+        </div>
+        <div class="contact-with-owner">
+            <div class="contact-with-owner-title">
+
+                <h2>Reply to the listing </h2>
+
+            </div>
+            <div class="contact-with-owne-form">
+            <form>
+                <p>
+                    <mat-form-field style="width:100% !important" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" name="Name">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-hint>Email is not valid!</mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width:100% !important" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" name="email">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-hint>Email is not valid!</mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width:100% !important" appearance="outline">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput name="message"></textarea>
+                    </mat-form-field>
+                    
+                </p>
+                <button class="loginBtn" mat-raised-button color="primary"> Send Message! </button>
+            </form>
+        </div>
+        </div>
     </div>
-  
-  </div>
+</div>

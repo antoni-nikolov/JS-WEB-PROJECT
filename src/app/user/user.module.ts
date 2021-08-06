@@ -31,6 +31,10 @@ import { PasswordsMatchDirective } from './passwords-match.directive';
 
   providers: [
     
+  ],
+  exports: [
+    MatInputModule,
+    MatFormFieldModule
   ]
 
 })

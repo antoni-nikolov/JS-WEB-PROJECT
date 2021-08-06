@@ -1,0 +1,132 @@
+.column {
+  float: left;
+  padding: 10px;
+  margin: 6px;
+   
+}
+
+.left {
+  width: 67%;
+}
+
+.right {
+  width: 27%;
+}
+.row{
+    margin: 60px 0;
+}
+  
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.description-content{
+    
+}
+
+.main-info{
+    background: white;
+    padding: 20px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    margin-bottom: 20px;
+}
+
+.description-img{
+    background: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    margin-bottom: 20px;
+
+}
+
+.property-image{
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: calc(100% + 32px);
+    margin: -16px -16px -16px -16px;
+}
+
+.property-details{
+    font-size: 17px;
+    line-height: 25px;
+    padding: 20px 20px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+}
+
+.property-details-title{
+    border-bottom: 2px solid #15294d;
+    width: max-content;
+    line-height: 34px;
+
+}
+
+.properti-price{
+    color: #3f51b5;
+    font-size: 27px;
+    font-weight: 700;
+    float: inline-end;
+    
+}
+
+.owner-content{
+  
+    background: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.owner-img{
+    
+    
+}
+
+.owner-image{
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    width: calc(100% + 32px);
+    margin: -16px -16px -16px -16px;
+}
+
+.owner-details{
+    margin-top: 40px;
+    font-size: 17px;
+}
+.owner-details h2{
+    font-size: 19px;
+}
+
+.owner-details p{
+    margin-top: 10px;
+}
+
+.owner-icons{
+    color: #ff4081;
+    position: relative;
+    bottom: -7px;
+}
+
+.contact-with-owner{
+    margin-top: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.contact-with-owner-title{
+    background: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    
+}
+.contact-with-owne-form{
+    padding: 20px;
+    text-align: center;
+}

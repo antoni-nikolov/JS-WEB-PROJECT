@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from '../catalog-service';
 import { IProperty } from '../shared/interfaces/property';
