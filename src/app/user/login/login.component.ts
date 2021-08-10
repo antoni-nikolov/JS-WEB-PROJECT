@@ -2,7 +2,7 @@ import { Component,  OnInit } from '@angular/core';
 import { NgForm, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../user-service.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
+  error!: string | null
 
   constructor(
     private userService: UserService,
@@ -26,13 +27,19 @@ export class LoginComponent implements OnInit {
     const { email, password } = form.value;
 
     this.userService.login(email, password).pipe(
-      map(x => localStorage.setItem('auth', JSON.stringify(x)))
+      tap(x => localStorage.setItem('auth', JSON.stringify(x)))
     ).subscribe({
      next: () => {
        this.router.navigate(['/dashboard/my-properties']);
      },
      error: (err) => {
        console.error(err);
+       let currentError: string;
+       if (err.error.error.message == 'EMAIL_NOT_FOUND' ||err.error.error.message == 'INVALID_PASSWORD') {
+         currentError = 'Incorect password or email!!!'
+       }
+       this.error! = currentError! 
+       form.reset()
      }
    })
  }

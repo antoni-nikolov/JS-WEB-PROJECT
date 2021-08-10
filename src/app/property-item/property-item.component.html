@@ -1,6 +1,6 @@
 <div class="properti-card">
   <img class="property-card-image" src="{{property.imageUrl}}" alt="My First App">
-  <span class="hot-offer">HOT OFFER</span>
+  <span *ngIf="property.label" class="{{property.label.toLowerCase()}}">{{property.label}}</span>
   <div class="property-card-content">
     <mat-card-title>{{property.title}}</mat-card-title>
     <span class="card-adress">
@@ -13,12 +13,28 @@
       <p class="card-property-size">Bathrooms<span style="float: right;">{{property.bathrooms}}</span></p>
       <p class="card-property-size">Garages<span style="float: right;">{{property.garages}}</span></p>
     </div>
+    
   </div>
   <div class="property-card-action">
-    <button  mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button color="primary" class="card-btn">DETAILS</button>
+    
+    <ng-template #user>
+      <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button
+      color="primary" class="card-btn">DETAILS</button>
+    </ng-template>
+    
+    <ng-template #admin>
+      <div style="display: flex; margin-top: 20px;">
+      <button routerLink="/dashboard/my-properties/edit/{{property._ownerId}}/{{property._id}}"  mat-raised-button color="primary" class="admin-btns"><mat-icon>edit</mat-icon> EDIT</button>
+      <button (click)="deleteProperty(property._ownerId, property._id)" mat-raised-button color="warn"
+      class="admin-btns"><mat-icon>delete</mat-icon> DELETE</button>
+    </div>
+    </ng-template>
+
+      <ng-container *ngTemplateOutlet="path ? admin : user "></ng-container>
+
     <!--(click)="onLike(property._ownerId, property._id)"-->
   </div>
 

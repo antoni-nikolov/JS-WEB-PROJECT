@@ -1,6 +1,7 @@
 
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 import { FavoritesComponent } from './favorites/favorites.component';
 import { MainComponent } from './main/main.component';
@@ -34,7 +35,11 @@ const routes: Routes = [
         {
           path: 'profile',
           component: ProfileComponent
-      }
+        },
+        {
+          path: 'my-properties/edit/:_ownerid/:_id',
+          component: EditComponent
+        },
     ]
   },
 

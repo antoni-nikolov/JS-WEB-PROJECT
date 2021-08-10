@@ -85,12 +85,36 @@
   }
 
   .search-bar{
-    padding: 20px;
-    background: lightsteelblue;
+    width: 80%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    position: relative;
+    top: -40px;
+
   }
 
   .search-input{
     background: white;
+    padding-top: 1.34375em;;
+  }
+
+  .search-btn-container{
+    vertical-align: super;
+  }
+
+  .search-btn{
+    width: 15%;
+    margin-left: 20px;
+    height: 48px;
+  }
+
+  .search-btn-all{
+    width: 2%;
+    margin-left: 20px;
+    height: 48px;
   }
 
   

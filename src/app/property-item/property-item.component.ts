@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CatalogService } from '../catalog-service';
 import { IProperty } from '../shared/interfaces/property';
-import { UserService } from '../user-service.service';
 
 
 @Component({
@@ -12,10 +10,11 @@ import { UserService } from '../user-service.service';
 export class PropertyItemComponent {
 
   @Input() property!: IProperty;
+  @Input() path!: string;
+  @Input() deleteProperty!: Function
   
   constructor(
-    private catalogService: CatalogService,
-    private userService: UserService
+    
   ) {
     
     

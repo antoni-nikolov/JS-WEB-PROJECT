@@ -12,6 +12,11 @@ import { UserService } from 'src/app/user-service.service';
 })
 export class CreateComponent implements OnInit {
 
+ 
+  favoriteSeason!: string;
+  labels: string[] = ['Exclusive', 'Featured'];
+
+
   constructor(
     private catalogService: CatalogService,
     private userService: UserService,

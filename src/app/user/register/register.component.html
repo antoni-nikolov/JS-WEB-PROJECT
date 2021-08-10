@@ -1,4 +1,7 @@
 <div class="user-pages-wrapper">
+    <div class="errors" *ngIf="error">
+        <h2>{{error}}</h2>
+    </div>
     <div class="container">
         <div class="user-form-wrapper">
             <h2>Sign up</h2>
@@ -25,6 +28,15 @@
                             
                         </mat-form-field>
                     </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Phone</mat-label>
+                            <input matInput placeholder="Phone" name="phoneNumber" #phoneInput="ngModel" ngModel required>
+                            <mat-icon matSuffix>phone</mat-icon>
+                            <mat-hint *ngIf="phoneInput.invalid && phoneInput.touched" class="formError">Phone is required!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                   
                     <p>
                         <mat-form-field appearance="outline">
                             <mat-label>Password</mat-label>

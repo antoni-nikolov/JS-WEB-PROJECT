@@ -75,7 +75,17 @@ svg.material-icons:not(:last-child) {
 
 .card-container .card:not(.highlight-card):hover .material-icons path {
     fill: #1976d2;
-  }
+}
+
+.errors{
+  padding: 20px;
+  float: right;
+  border: 1px solid #ffe270;
+  width: 20%;
+  border-radius: 15px;
+  color: #ffe270;
+  margin: 0 20px;
+}
 
 
   @media screen and (max-width: 767px) {

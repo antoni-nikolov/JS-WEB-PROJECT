@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { tap } from 'rxjs/operators';
 import { CatalogService } from '../catalog-service';
 
 
@@ -10,7 +9,7 @@ import { CatalogService } from '../catalog-service';
 })
 export class PropertiesComponent {
 
-  properties!: any;
+  properties!: [] | null;
   
   constructor(
     private catalogService: CatalogService
@@ -23,19 +22,46 @@ export class PropertiesComponent {
     this.catalogService.getAll().subscribe(data => this.convertData(data));
   }
 
-  convertData(data: any): void{
-    let currentData:any = [];
-    let result = Object.entries(data)
+  convertData<T>(data: T): void{
 
-    result.forEach((el:any) => {
-      for (const iterator in el[1]) {
-        currentData.push(Object.assign({_id: iterator}, el[1][iterator]))
-      }   
-    });
-    this.properties = currentData;    
+    let currentData: any = []
+
+    if (data) {
+      let result = Object.entries(data)
+
+      result.forEach((el) => {
+        for (const iterator in el[1]) {
+          currentData.push(Object.assign({_id: iterator}, el[1][iterator]))
+        }   
+      });
+      
+      this.properties = currentData; 
+    }
+    //return currentData
+  }
+  
+  
+  searchHandler(search: HTMLInputElement): void{
+
+    const query = search.value;
+    let currentData = this.properties
+
+    if (currentData) {
+      const filterData: any = currentData.filter((x: any ) => x.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+      this.properties = filterData;
+      
+    }
+    
+    //search.value = '';
+    //this.catalogService.getAll().subscribe(data => this.convertData(data));
+  }
+
+  allPropertiesHandler(){
+    this.getAllProperties(); 
   }
 
 
-
 }
+
+
 

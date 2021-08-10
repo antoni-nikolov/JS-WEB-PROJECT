@@ -9,7 +9,7 @@ export interface IProperty {
     price: number,
     size: number,
     title: number
-    //label: string,
+    label: string,
     _id: string
     
 }

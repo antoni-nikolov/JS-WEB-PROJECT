@@ -2,9 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProperty } from './shared/interfaces/property';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CatalogService {
 
   url: string = 'https://dream-property-508d3-default-rtdb.europe-west1.firebasedatabase.app/';
@@ -26,8 +24,8 @@ export class CatalogService {
 
     const auth = localStorage.getItem('auth');
     auth ? catalogUrl += `?auth=${JSON.parse(auth).idToken}` : catalogUrl;
+    auth ? IdUrl += `?auth=${JSON.parse(auth).idToken}` : IdUrl;
 
-    console.log('Catalog URl, ', baseUrl);
     
     return {
       baseUrl,
@@ -55,10 +53,15 @@ export class CatalogService {
 
   }
 
-  //edit(_ownerId: string, _id?: string, data?: any){
-  //  this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, data)
-//
-  //}
+  delete(_ownerId: string, _id: string ){
+    return this.http.delete<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`)
+
+  }
+
+  edit(_ownerId: string, _id?: string, data?: {}){
+    return this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, data)
+
+  }
 
   //like(_ownerId: string, _id?: string, user?: string): void{
   //  

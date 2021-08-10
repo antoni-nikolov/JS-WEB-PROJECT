@@ -110,10 +110,10 @@
 
 <section id="new-properties">
   <div class="container">
-    <h2>New Properties</h2>
+    <h2>Exclusive Offers</h2>
     <div class="container-properties-home">
 
-     <!-- <app-property-item *ngFor="let property of properties" [property]="property"></app-property-item> -->
+     <app-property-item *ngFor="let property of exclusiveProperties" [property]="property"></app-property-item>
 
     </div>
   </div>
@@ -123,7 +123,7 @@
   <div class="container">
     <h2>Featured Properties</h2>
     <div class="container-properties-home">
-      <!--<app-property-item *ngFor="let property of properties" [property]="property"></app-property-item>-->
+      <app-property-item *ngFor="let property of featuredProperties" [property]="property"></app-property-item>
     </div>
   </div>
 </section>

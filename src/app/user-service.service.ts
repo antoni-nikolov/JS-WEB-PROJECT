@@ -2,32 +2,33 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from './shared/interfaces/user';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class UserService {
 
   apiKey: string = 'AIzaSyB_k4wGL6FPlaBkB4U6e5rGzR9zuIYNm2A';
   registerUrl: string = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
-  loginUrl: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`
+  loginUrl: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`;
+
 
   constructor(
     private http: HttpClient
   ) { }
 
-  register(displayName: string, email: string, password: string) {
+  register(displayName: string, email: string, password: string, phoneNumber: number) {
+  
 
     const data = {
+      displayName: displayName,
       email,
       password,
       returnSecureToken: true,
-      displayName: displayName,
       headers: {
         'content-type': 'application/json',
 
       },
     }
+
     return this.http.post<IUser>(`${this.registerUrl}`, data);
   }
 

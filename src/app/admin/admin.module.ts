@@ -6,6 +6,7 @@ import { CreateComponent } from './create/create.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditComponent } from './edit/edit.component'; 
 
 import {MatListModule} from '@angular/material/list'; 
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AdminRoutingModule } from './admin-routing.module';
 import { PropertyItemComponent } from '../property-item/property-item.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       MyPropertiesComponent,
       ProfileComponent,
       MainComponent,
-      PropertyItemComponent
+      PropertyItemComponent,
+      EditComponent
       
   ],
   imports: [
@@ -41,6 +45,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     AdminRoutingModule,
   ],
   exports: [

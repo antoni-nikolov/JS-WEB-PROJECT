@@ -34,6 +34,7 @@ const routes: Routes = [
     path: 'properties/details/:_ownerid/:_id',
     component: DetailsComponent
   },
+ 
 
 ];
 

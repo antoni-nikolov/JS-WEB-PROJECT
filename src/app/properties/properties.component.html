@@ -2,16 +2,15 @@
 
 </section>
 <div class="search-bar">
-  <p>
-    <mat-form-field  style="width:70% !important"  appearance="outline">
+    <mat-form-field class="search-input" style="width:70% !important"  appearance="outline">
         <mat-label>Search by tittle!</mat-label>
-        <input matInput placeholder="Email" name="email">
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-hint>Email is not valid!</mat-hint>
+        <input matInput placeholder="Enter keyword" #searchInput name="email">
+        <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    <button class="search-btn" mat-raised-button color="primary"> Search </button>
-
-</p>
+    <span class="search-btn-container">
+      <button (click)="searchHandler(searchInput)" class="search-btn" mat-raised-button color="primary"> Search </button>
+      <button (click)="allPropertiesHandler()" class="search-btn-all" mat-raised-button color="accent"> All</button>
+    </span>
 </div>
 <section id="new-properties">
   <div style="text-align: center; margin-top: 57px;">
@@ -24,7 +23,6 @@
       <h2>Loading...</h2>
       <mat-spinner></mat-spinner>
     </div>
-
   </div>
 </section>
 

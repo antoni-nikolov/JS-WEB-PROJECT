@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from '../catalog-service';
 import { IProperty } from '../shared/interfaces/property';
@@ -12,7 +11,7 @@ import { IProperty } from '../shared/interfaces/property';
 export class DetailsComponent implements OnInit {
 
   data!: any
-  property!: IProperty
+  property!: IProperty 
   constructor(
     private route: ActivatedRoute,
     private catalogService: CatalogService
@@ -21,14 +20,12 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
 
     const data = this.route.snapshot.params;
-    console.log('>.>>> ', data);
     this.data = data;
     this.getProperty()
     
   }
 
   getProperty():void{
-    console.log('Get Porperty fnk', this.data);
     this.catalogService.getById(this.data._ownerid, this.data._id).subscribe(data => this.property = data)
 
   }
