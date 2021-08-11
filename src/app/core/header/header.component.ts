@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user-service.service';
 
@@ -9,31 +9,17 @@ import { UserService } from 'src/app/user-service.service';
 })
 export class HeaderComponent {
 
-
-    isAuthenticated: boolean = false
+    get isLogged(): boolean{
+      return this.userService.getUserData().isAuthenticated
+    }
   
   constructor(
     private userService: UserService,
     private router: Router
-    ) { 
-      
-    this.isAuthenticated = Boolean(this.userService.getUserData().isAuthenticated)
- 
-  }
+    ) {}
 
   logoutHandler() {
     this.userService.logout();
-    this.isAuthenticated = false
-    this.router.navigate(['/login']);
-    
+    this.router.navigate(['/login']);    
   }
-
-  ngOnChanges(simpleChenges: SimpleChanges): void {
-    console.log(simpleChenges);
-    
-  }
-
-
-
-
 }

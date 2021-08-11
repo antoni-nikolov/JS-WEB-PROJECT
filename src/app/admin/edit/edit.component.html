@@ -2,7 +2,11 @@
     <div class="create-wrapper">
       <h2>Edit Property</h2>
       <div class="login-form">
-        <form #form="ngForm" (ngSubmit)="onEditSubmit(form)">
+        <div *ngIf="!property">
+          <h2>Loading...</h2>
+          <mat-spinner style="margin: auto;"></mat-spinner>
+        </div>
+        <form #form="ngForm"(ngSubmit)="onEditSubmit(form)" *ngIf="property">
           <div>
             <mat-form-field appearance="outline">
               <mat-label>title</mat-label>
@@ -63,7 +67,7 @@
               <mat-hint class="formError">Hint</mat-hint>
             </mat-form-field>
           </div>
-          <label id="example-radio-group-label">Pick your property label!</label>
+          <label id="example-radio-group-label">Pick your property label</label>
           <div>
             <mat-radio-group aria-labelledby="example-radio-group-label" name="label" ngModel="{{property.label}}">
               <mat-radio-button class="radio-btn" *ngFor="let label of labels" [value]="label" requred>

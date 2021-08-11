@@ -8,7 +8,7 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './edit/edit.component'; 
 
-import {MatListModule} from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list'; 
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
@@ -18,8 +18,10 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AdminRoutingModule } from './admin-routing.module';
 import { PropertyItemComponent } from '../property-item/property-item.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MessagesComponent } from './messages/messages.component';
+import { MessageItemComponent } from './message-item/message-item.component';
 
 
 
@@ -31,7 +33,9 @@ import {MatRadioModule} from '@angular/material/radio';
       ProfileComponent,
       MainComponent,
       PropertyItemComponent,
-      EditComponent
+      EditComponent,
+      MessagesComponent,
+      MessageItemComponent
       
   ],
   imports: [

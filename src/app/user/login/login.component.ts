@@ -2,7 +2,7 @@ import { Component,  OnInit } from '@angular/core';
 import { NgForm, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../user-service.service';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

@@ -63,7 +63,7 @@ export class CatalogService {
 
   }
 
-  //like(_ownerId: string, _id?: string, user?: string): void{
+   //like(_ownerId: string, _id?: string, user?: string): void{
   //  
   //  this.http.get<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, {withCredentials: false})
   //  .subscribe(data => this.validate(data.likes, user!))
@@ -76,5 +76,8 @@ export class CatalogService {
   //  data = data.push({_id: user})
   //  
   //}
+
+
+
     
 }

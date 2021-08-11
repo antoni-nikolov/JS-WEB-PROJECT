@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PropertiesComponent } from './properties/properties.component';
+import { DetailsComponent } from './details/details.component';
 
 import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
@@ -14,11 +16,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogService } from './catalog-service';
 import { UserService } from './user-service.service';
-import { DetailsComponent } from './details/details.component';
+import { FormsModule } from '@angular/forms';
+import { MessageService } from './message.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { DetailsComponent } from './details/details.component';
     HomeComponent,
     PropertiesComponent,
     DetailsComponent,
+    NotFoundComponent,
     
   ],
   imports: [
@@ -41,12 +45,14 @@ import { DetailsComponent } from './details/details.component';
     MatMenuModule,
     MatFormFieldModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
      
   ],
   providers: [
     CatalogService,
-    UserService
+    UserService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

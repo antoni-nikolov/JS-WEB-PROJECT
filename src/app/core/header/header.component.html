@@ -1,39 +1,29 @@
 <div class="toolbar" role="banner">
-  <a  routerLink="">
-
-    <img width="30" alt="Properti Logo"
-    src="../assets/Properti.svg" />
+  <a routerLink="">
+    <img width="30" alt="Properti Logo" src="../assets/Properti.svg" />
   </a>
-    <span>DREAM PROPERTY</span>
-    <div class="spacer">
-    
-    </div>
-      <nav class="nav">  
-        <ng-template #user>
-          
-          <a class="navLink" routerLink=''>Home</a>
-          <a class="navLink" routerLink="/properties" >Properties</a>
-          <button routerLink="/dashboard/my-properties" mat-raised-button color="accent">Dashboard</button>
-          <a class="navLink" routerLink="/properties" (click)="logoutHandler()" >Logout</a>
-          
-        </ng-template>
-        
-        <ng-template #guest>
-          
-          <a class="navLink" routerLink=''>Home</a>
-          <a class="navLink" routerLink="/properties">Properties</a>
-          <button mat-button [matMenuTriggerFor]="menu">Profile</button>
-          <mat-menu #menu="matMenu">
-            <button routerLink="/login" mat-menu-item>Login</button>
-            <button routerLink="/register" mat-menu-item>Register</button>
-          </mat-menu>
-          <button routerLink="/login" mat-raised-button color="accent">Submit Add</button>
-          
-        </ng-template>
-        <ng-container *ngTemplateOutlet="isAuthenticated ? user : guest"></ng-container>
-        
-        
-        
-      </nav>
-    
+  <span>DREAM PROPERTY</span>
+  <div class="spacer">
   </div>
+  <nav class="nav">
+    <ng-template #user>
+      <a class="navLink" routerLink=''>Home</a>
+      <a class="navLink" routerLink="/properties">Properties</a>
+      <button routerLink="/dashboard/my-properties" mat-raised-button color="accent">Dashboard</button>
+      <a class="navLink" routerLink="/properties" (click)="logoutHandler()">Logout</a>
+    </ng-template>
+    <ng-template #guest>
+      <a class="navLink" routerLink=''>Home</a>
+      <a class="navLink" routerLink="/properties">Properties</a>
+      <button mat-button [matMenuTriggerFor]="menu">Profile</button>
+      <mat-menu #menu="matMenu">
+        <button routerLink="/login" mat-menu-item>Login</button>
+        <button routerLink="/register" mat-menu-item>Register</button>
+      </mat-menu>
+      <button routerLink="/dashboard/create" mat-raised-button color="accent">Submit Add</button>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="isLogged ? user : guest"></ng-container>
+
+  </nav>
+</div>

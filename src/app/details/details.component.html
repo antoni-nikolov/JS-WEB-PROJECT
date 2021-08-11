@@ -2,74 +2,72 @@
     <div class="column left">
         <div class="description-content">
             <div class="main-info">
-                <h2>{{property.title}}</h2>
+                <h2>{{property?.title}}</h2>
                 <span>
-                    <mat-icon aria-hidden="true" class="mat-icon">location_on</mat-icon>{{property.adress}}
+                    <mat-icon aria-hidden="true" class="mat-icon">location_on</mat-icon>{{property?.adress}}
                 </span>
-                <span class="properti-price">${{property.price}} /month</span>
+                <span class="properti-price">${{property?.price}} /month</span>
             </div>
             <div class="description-img">
-                <img class="property-image" src="{{property.imageUrl}}" alt="My First App">
+                <img class="property-image" src="{{property?.imageUrl}}" alt="My First App">
             </div>
             <div class="property-details">
                 <h3 class="property-details-title">Property Details</h3>
-                <p class="property-info">Property size: {{property.size}} ft²</p>
-                <p class="property-info">Bedrooms: {{property.bedrooms}}</p>
-                <p class="property-info">Bathrooms: {{property.bathrooms}}</p>
-                <p class="property-info">Garages: {{property.garages}}</p>
+                <p class="property-info">Property size m²: {{property?.size}} m²</p>
+                <p class="property-info">Bedrooms: {{property?.bedrooms}}</p>
+                <p class="property-info">Bathrooms: {{property?.bathrooms}}</p>
+                <p class="property-info">Garages: {{property?.garages}}</p>
             </div>
         </div>
     </div>
     <div class="column right">
         <div class="owner-content">
             <div class="owner-img">
-                <img class="owner-image" src="{{property.imageUrl}}" alt="My First App">
+                <img class="owner-image" src="{{property?.imageUrl}}" alt="My First App">
             </div>
             <div class="owner-details">
-                <h2 class="owner-name">Owner: Michelle Ormond</h2>
+                <h2 class="owner-name">Owner: {{ownerData?.name}}</h2>
                 <p class="owner-email">
-                    <mat-icon class="owner-icons">email</mat-icon> <a href="mailto: office@andseo.bg"> test@yahoo.con</a> 
+                    <mat-icon class="owner-icons">email</mat-icon> <a href="mailto: {{ownerData?.email}}"> {{ownerData?.email}}</a>
                 </p>
                 <p class="owner-phone">
-                    <mat-icon class="owner-icons">phone</mat-icon> <a href="tel:0895000187"> (+359) 895000187</a>
+                    <mat-icon class="owner-icons">phone</mat-icon> <a href="tel: {{ownerData?.phoneNumber}}"> {{ownerData?.phoneNumber}}</a>
                 </p>
-
             </div>
         </div>
         <div class="contact-with-owner">
             <div class="contact-with-owner-title">
-
                 <h2>Reply to the listing </h2>
-
             </div>
             <div class="contact-with-owne-form">
-            <form>
-                <p>
-                    <mat-form-field style="width:100% !important" appearance="outline">
-                        <mat-label>Name</mat-label>
-                        <input matInput placeholder="Name" name="Name">
-                        <mat-icon matSuffix>email</mat-icon>
-                        <mat-hint>Email is not valid!</mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field style="width:100% !important" appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" name="email">
-                        <mat-icon matSuffix>email</mat-icon>
-                        <mat-hint>Email is not valid!</mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field style="width:100% !important" appearance="outline">
-                        <mat-label>Message</mat-label>
-                        <textarea matInput name="message"></textarea>
-                    </mat-form-field>
-                    
-                </p>
-                <button class="loginBtn" mat-raised-button color="primary"> Send Message! </button>
-            </form>
-        </div>
+                <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+                    <p>
+                        <mat-form-field style="width:100% !important" appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" name="name" #nameInput="ngModel" ngModel required>
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-hint *ngIf="nameInput.invalid && nameInput.touched" class="formError">Name is required!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field style="width:100% !important" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" name="email" #emailInput="ngModel" ngModel required pattern="^\S+@\S+\.\S+$">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-hint *ngIf="emailInput.invalid && emailInput.touched" class="formError">Email is not valid!
+                            </mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field style="width:100% !important" appearance="outline">
+                            <mat-label>Message</mat-label>
+                            <textarea matInput name="message" #messageInput="ngModel" ngModel required></textarea>
+                            <mat-hint *ngIf="messageInput.invalid && messageInput.touched" class="formError">Message is required!</mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <button class="loginBtn" mat-raised-button color="primary"> Send Message! </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -30,8 +30,8 @@ export class PropertiesComponent {
       let result = Object.entries(data)
 
       result.forEach((el) => {
-        for (const iterator in el[1]) {
-          currentData.push(Object.assign({_id: iterator}, el[1][iterator]))
+        for (const key in el[1]) {
+          currentData.push(Object.assign({_id: key}, el[1][key]))
         }   
       });
       
@@ -48,8 +48,7 @@ export class PropertiesComponent {
 
     if (currentData) {
       const filterData: any = currentData.filter((x: any ) => x.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
-      this.properties = filterData;
-      
+      this.properties = filterData;      
     }
     
     //search.value = '';

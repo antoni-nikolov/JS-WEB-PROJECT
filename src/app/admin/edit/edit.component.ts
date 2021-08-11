@@ -12,7 +12,6 @@ import { UserService } from 'src/app/user-service.service';
 })
 export class EditComponent implements OnInit {
 
-  favoriteSeason!: string;
   labels: string[] = ['Exclusive', 'Featured'];
 
   property!: IProperty
@@ -26,6 +25,7 @@ export class EditComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) { 
+
     this._ownerId = this.route.snapshot.params._ownerid;
     this._id = this.route.snapshot.params._id;
     this.localId = this.userService.getUserData().localId;
@@ -36,11 +36,9 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getProperty( ):void{
-    console.log('GET PROPERTY ', this._ownerId)
+  getProperty():void{
     this.catalogService.getById(this._ownerId, this._id).subscribe(data => this.property = data)
   }
-
 
   onEditSubmit(form: NgForm): void {
     
@@ -48,6 +46,7 @@ export class EditComponent implements OnInit {
 
     if (this._ownerId === this.localId) {
       const data = form.value
+
       this.catalogService.edit(this._ownerId, this._id, data)
       .subscribe({
         next: () => {
