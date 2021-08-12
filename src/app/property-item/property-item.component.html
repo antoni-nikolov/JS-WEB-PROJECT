@@ -8,7 +8,7 @@
     </span>
     <span class="card-price">${{property.price}}</span>
     <div class="property-card-details">
-      <p class="card-property-size">Property size<span style="float: right;">{{property.size}} ft²</span></p>
+      <p class="card-property-size">Property size<span style="float: right;">{{property.size}} m²</span></p>
       <p class="card-property-size">Bedrooms<span style="float: right;">{{property.bedrooms}}</span></p>
       <p class="card-property-size">Bathrooms<span style="float: right;">{{property.bathrooms}}</span></p>
       <p class="card-property-size">Garages<span style="float: right;">{{property.garages}}</span></p>
@@ -18,7 +18,7 @@
   <div class="property-card-action">
     
     <ng-template #user>
-      <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+      <button (click)="likeHandler(property._ownerId,property._id)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
         <mat-icon>favorite</mat-icon>
       </button>
       <button routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button
@@ -26,14 +26,18 @@
     </ng-template>
     
     <ng-template #admin>
-      <div style="display: flex; margin-top: 20px;">
-      <button routerLink="/dashboard/my-properties/edit/{{property._ownerId}}/{{property._id}}"  mat-raised-button color="primary" class="admin-btns"><mat-icon>edit</mat-icon> EDIT</button>
-      <button (click)="deleteProperty(property._ownerId, property._id)" mat-raised-button color="warn"
+      <div style="display: flex; margin-top: 20px; justify-content: center;">
+      <button *ngIf="myProperties" routerLink="/dashboard/my-properties/edit/{{property._ownerId}}/{{property._id}}"  mat-raised-button color="primary" class="admin-btns"><mat-icon>edit</mat-icon> EDIT</button>
+      <button *ngIf="myProperties" (click)="deleteProperty(property._ownerId, property._id)" mat-raised-button color="warn"
       class="admin-btns"><mat-icon>delete</mat-icon> DELETE</button>
+      
+      <button *ngIf="favorite" routerLink="/properties/details/{{property._ownerId}}/{{property._id}}" mat-raised-button color="primary" class="admin-btns">DETAILS</button>
+      <button *ngIf="favorite" (click)="unLikeHandler(property._id)" mat-raised-button color="warn"
+      class="admin-btns"><mat-icon>delete</mat-icon> UNLIKE</button>
     </div>
     </ng-template>
 
-      <ng-container *ngTemplateOutlet="path ? admin : user "></ng-container>
+      <ng-container *ngTemplateOutlet="myProperties || favorite ? admin : user "></ng-container>
 
     <!--(click)="onLike(property._ownerId, property._id)"-->
   </div>

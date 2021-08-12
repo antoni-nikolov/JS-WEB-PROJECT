@@ -20,6 +20,8 @@ export class DetailsComponent implements OnInit {
   data!: any
   property!: IProperty
   ownerData!: IUserDB
+  messageWasSend!: string | null
+
   constructor(
     private route: ActivatedRoute,
     private catalogService: CatalogService,
@@ -32,32 +34,33 @@ export class DetailsComponent implements OnInit {
     const data = this.route.snapshot.params;
     this.data = data;
     this.getProperty()
-    
+
   }
 
-  getProperty():void{
+  getProperty(): void {
     this.catalogService.getById(this.data._ownerid, this.data._id)
-    .pipe(
-      tap(x => this.getOwner(x._ownerId))
-    )
-    .subscribe(data => this.property = data)
+      .pipe(
+        tap(x => this.getOwner(x._ownerId))
+      )
+      .subscribe(data => this.property = data)
 
   }
 
-  getOwner(_id: string){
+  getOwner(_id: string) {
     this.userService.getUserFromDb(_id)
-    .subscribe(data => this.ownerData = Object.values(data)[0])
+      .subscribe(data => this.ownerData = Object.values(data)[0])
   }
 
-  sendMessage(form: NgForm): void{
+  sendMessage(form: NgForm): void {
     if (form.invalid) { return; }
-    const { name, email, message} = form.value
+    const { name, email, message } = form.value
     const ownerId = this.property._ownerId;
 
     this.messageService.currentOwner(ownerId, name, email, message)
-    console.log('SEND MESSAGE HANDLER')
+    this.messageWasSend = 'The message has been sent!'
+
     form.resetForm()
-    
+
   }
 
 }

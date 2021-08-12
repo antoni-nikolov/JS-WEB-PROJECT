@@ -7,17 +7,17 @@
       <form #form="ngForm" (ngSubmit)="onCreateSubmit(form)">
         <div>
           <mat-form-field appearance="outline">
-            <mat-label>title</mat-label>
+            <mat-label>Title</mat-label>
             <input matInput placeholder="title" name="title" #titleInput="ngModel" ngModel required>
             <mat-icon matSuffix>title</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="titleInput.invalid && titleInput.touched" class="formError">title is required!</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Adress</mat-label>
             <input matInput placeholder="Adress" name="adress" #adressInput="ngModel" ngModel required>
             <mat-icon matSuffix>location_on</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="adressInput.invalid && adressInput.touched" class="formError">Adress is required!</mat-hint>
           </mat-form-field>
         </div>
         <div>
@@ -25,14 +25,14 @@
             <mat-label>Price</mat-label>
             <input matInput placeholder="Price" name="price" #priceInput="ngModel" ngModel required>
             <mat-icon matSuffix>euro_symbol</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="priceInput.invalid && priceInput.touched" class="formError">Price is required!</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Property size</mat-label>
+            <mat-label>Property size - m²</mat-label>
             <input matInput placeholder="Property size" name="size" #sizeInput="ngModel" ngModel required>
             <mat-icon matSuffix>photo_size_select_small</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="sizeInput.invalid && sizeInput.touched" class="formError">Property size is required!</mat-hint>
           </mat-form-field>
         </div>
         <div>
@@ -40,14 +40,14 @@
             <mat-label>Bedrooms</mat-label>
             <input matInput placeholder="Bedrooms" name="bedrooms" #bedroomsInput="ngModel" ngModel required>
             <mat-icon matSuffix>airline_seat_individual_suite</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="bedroomsInput.invalid && bedroomsInput.touched" class="formError">Bedrooms is required!</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Bathrooms</mat-label>
             <input matInput placeholder="Bathrooms" name="bathrooms" #bathroomsInput="ngModel" ngModel required>
             <mat-icon matSuffix>wc</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="bathroomsInput.invalid && bathroomsInput.touched" class="formError">Bathrooms is required!</mat-hint>
           </mat-form-field>
         </div>
         <div>
@@ -55,14 +55,14 @@
             <mat-label>Garages</mat-label>
             <input matInput placeholder="Garages" name="garages" #garagesInput="ngModel" ngModel required>
             <mat-icon matSuffix>drive_eta</mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="garagesInput.invalid && garagesInput.touched" class="formError">Garages is required!</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Image URL</mat-label>
             <input matInput placeholder="Image URL" name="imageUrl" #imageUrlInput="ngModel" ngModel required>
             <mat-icon matSuffix></mat-icon>
-            <mat-hint class="formError">Hint</mat-hint>
+            <mat-hint *ngIf="imageUrlInput.invalid && imageUrlInput.touched" class="formError">Image URL is required!</mat-hint>
           </mat-form-field>
         </div>
         <label id="example-radio-group-label">Pick property label</label>

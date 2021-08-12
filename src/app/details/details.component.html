@@ -65,7 +65,8 @@
                             <mat-hint *ngIf="messageInput.invalid && messageInput.touched" class="formError">Message is required!</mat-hint>
                         </mat-form-field>
                     </p>
-                    <button class="loginBtn" mat-raised-button color="primary"> Send Message! </button>
+                    <button *ngIf="!messageWasSend"  mat-raised-button color="primary"> Send Message! </button>
+                    <span *ngIf="messageWasSend" class="send-message-notification"> {{messageWasSend}} </span>
                 </form>
             </div>
         </div>

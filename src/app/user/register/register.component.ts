@@ -23,11 +23,11 @@ export class RegisterComponent {
     
     if (form.invalid) { return; }
     
-    const { name, email, password, phoneNumber } = form.value
+    const { name, email, password, phoneNumber } = form.value;
     
     this.userService.register(name, email, password, phoneNumber)
     .pipe(
-      tap(x => localStorage.setItem('auth', JSON.stringify(x)))
+      tap(x => sessionStorage.setItem('auth', JSON.stringify(x)))
       )
       .subscribe({
         next: () => {

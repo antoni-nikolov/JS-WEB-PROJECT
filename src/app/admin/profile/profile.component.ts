@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { IUserDB } from 'src/app/shared/interfaces/userDB';
+import { UserService } from 'src/app/user-service.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
-  isActive = false;
+  localId!: string;
+  userInfo!: IUserDB;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private userService: UserService
+  ) {
+    this.localId = this.userService.getUserData().localId
+    this.userData(this.localId)
   }
-
-  toggleActive(){
-    this.isActive = !this.isActive
-  }
-
+  
+  userData(localId: string){
+    this.userService.getUserFromDb(localId)
+    .subscribe(data => this.userInfo = Object.values(data)[0])
+   }
 
 }

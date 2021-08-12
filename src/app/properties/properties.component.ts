@@ -12,10 +12,11 @@ export class PropertiesComponent {
   properties!: [] | null;
   
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
     ) {
       
-    this.getAllProperties();  
+    this.getAllProperties();
+    
    }
 
   getAllProperties(): void {
@@ -37,12 +38,10 @@ export class PropertiesComponent {
       
       this.properties = currentData; 
     }
-    //return currentData
   }
   
   
   searchHandler(search: HTMLInputElement): void{
-
     const query = search.value;
     let currentData = this.properties
 
@@ -51,14 +50,11 @@ export class PropertiesComponent {
       this.properties = filterData;      
     }
     
-    //search.value = '';
-    //this.catalogService.getAll().subscribe(data => this.convertData(data));
   }
 
   allPropertiesHandler(){
     this.getAllProperties(); 
   }
-
 
 }
 

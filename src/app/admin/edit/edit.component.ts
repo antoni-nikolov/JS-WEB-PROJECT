@@ -53,6 +53,7 @@ export class EditComponent implements OnInit {
           this.router.navigate(['/dashboard/my-properties']);
         },
         error:(err) => {
+          //TODO.... SHOW ERRORS
           console.error(err);
         }
       })

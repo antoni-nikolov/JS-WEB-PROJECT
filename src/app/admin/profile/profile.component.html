@@ -1,16 +1,10 @@
-<section id="new-properties">
-    <div class="container">
-      <h2>Profile</h2>
-  
-      <button (click)="toggleActive()">Toggle</button>
-      <ng-template #isActiveTemplate>
-        Is Active
-      </ng-template>
-      <ng-template #isNotActiveTemplate>
-        Is not Active
-      </ng-template>
-
-      <ng-container *ngTemplateOutlet="isActive ? isActiveTemplate : isNotActiveTemplate"></ng-container>
-  
+<div class="container">
+  <div class="profile-wrapper">
+    <h2>Customer</h2>
+    <div class="user-data">
+      <h3>Name: {{userInfo?.name}}</h3>
+      <h3 class="user-data-mail-phone">Email: {{userInfo?.email}}</h3>
+      <h3  class="user-data-mail-phone">Phone: {{userInfo?.phoneNumber}}</h3>
     </div>
-  </section>
+  </div>
+</div>

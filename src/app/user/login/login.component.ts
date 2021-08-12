@@ -23,17 +23,19 @@ export class LoginComponent implements OnInit {
   }
 
   loginHandler(form: NgForm): void{
+
     if (form.invalid) { return; }
     const { email, password } = form.value;
 
-    this.userService.login(email, password).pipe(
-      tap(x => localStorage.setItem('auth', JSON.stringify(x)))
+    this.userService.login(email, password)
+    .pipe(
+      tap(x => sessionStorage.setItem('auth', JSON.stringify(x)))
     ).subscribe({
      next: () => {
        this.router.navigate(['/dashboard/my-properties']);
      },
      error: (err) => {
-       console.error(err);
+       
        let currentError: string;
        if (err.error.error.message == 'EMAIL_NOT_FOUND' ||err.error.error.message == 'INVALID_PASSWORD') {
          currentError = 'Incorect password or email!!!'

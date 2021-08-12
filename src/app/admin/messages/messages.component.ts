@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { MessageService } from 'src/app/message.service';
 import { IMessage } from 'src/app/shared/interfaces/message';
-import { IUserDB } from 'src/app/shared/interfaces/userDB';
 import { UserService } from 'src/app/user-service.service';
 
 @Component({
