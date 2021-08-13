@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(email, password)
     .pipe(
-      tap(x => sessionStorage.setItem('auth', JSON.stringify(x)))
+      tap(x => localStorage.setItem('auth', JSON.stringify(x)))
     ).subscribe({
      next: () => {
        this.router.navigate(['/dashboard/my-properties']);

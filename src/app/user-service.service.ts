@@ -45,12 +45,12 @@ export class UserService {
   }
 
   logout() {
-    sessionStorage.setItem('auth', '');
+    localStorage.setItem('auth', '');
   }
 
   getUserData() {
     try {
-      let data = JSON.parse(sessionStorage.getItem('auth')!);
+      let data = JSON.parse(localStorage.getItem('auth')!);
       
       return {
         isAuthenticated: Boolean(data.idToken),
@@ -70,7 +70,7 @@ export class UserService {
   }
 
   addUserInDb(name:string, email: string, phoneNumber: number): void{
-    const auth = sessionStorage.getItem('auth');
+    const auth = localStorage.getItem('auth');
     let url: string = `https://dream-property-508d3-default-rtdb.europe-west1.firebasedatabase.app/users/${this.getUserData().localId}.json`;
     auth ? url += `?auth=${JSON.parse(auth).idToken}` : url;
 

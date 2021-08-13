@@ -1,13 +1,12 @@
 <section id="my-properties">
   <div class="my-properties-title">
-    <h2>My Properties</h2>
+    <h2 *ngIf="properties">My Properties</h2>
+    <div *ngIf="!properties" class="missing-properties-message">
+      <h2>You don't have propertyes it yet!</h2>
+      <button routerLink="/dashboard/create" mat-raised-button color="primary">Add the first one</button>
+    </div>
   </div>
     <div class="container-properties">
-      <app-property-item *ngFor="let property of properties" [property]="property" [myProperties]="myProperties!"
-        [deleteProperty]="deleteProperty"></app-property-item>
-      <div *ngIf="!properties">
-        <h2>Loading...</h2>
-        <mat-spinner></mat-spinner>
-      </div>
+      <app-property-item *ngFor="let property of properties" [property]="property" [myProperties]="myProperties!" (deteteMyProperty)="propertyDeleted()"></app-property-item>
   </div>
 </section>

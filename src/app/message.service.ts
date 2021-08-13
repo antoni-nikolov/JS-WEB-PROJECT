@@ -9,6 +9,7 @@ export class MessageService {
 
   currentMessages!: any;
   key!: string;
+  errors!: string;
 
   constructor(
     private http: HttpClient,
@@ -34,7 +35,7 @@ export class MessageService {
 
     this.currentMessages.push({ name, email, message })
 
-    const auth = sessionStorage.getItem('auth');
+    const auth = localStorage.getItem('auth');
     let url: string = `https://dream-property-508d3-default-rtdb.europe-west1.firebasedatabase.app/users/${_id}/${this.key}.json`;
     auth ? url += `?auth=${JSON.parse(auth).idToken}` : url;
 
@@ -44,7 +45,10 @@ export class MessageService {
     this.http.patch<IUserDB>(url, data).subscribe({
       next: () => { },
       error: (err) => {
-        console.log(err);
+        if (err.status = 401) {
+          this.errors = 'Please login to your account!'
+          console.log(err.status);
+        }
       },
     });
 

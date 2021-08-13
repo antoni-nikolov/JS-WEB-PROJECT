@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from '../catalog-service';
@@ -20,7 +20,8 @@ export class DetailsComponent implements OnInit {
   data!: any
   property!: IProperty
   ownerData!: IUserDB
-  messageWasSend!: string | null
+  @Input() messageWasSend!: string | null
+
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +47,7 @@ export class DetailsComponent implements OnInit {
 
   }
 
-  getOwner(_id: string) {
+  getOwner(_id: string): void {
     this.userService.getUserFromDb(_id)
       .subscribe(data => this.ownerData = Object.values(data)[0])
   }

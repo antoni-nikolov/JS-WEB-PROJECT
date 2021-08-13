@@ -18,17 +18,17 @@ export class CatalogService {
 
     let baseUrl = `${this.url}${resource}.json`;
     let catalogUrl = `${this.url}/properties/${resource}.json`;
-    let ownerUrl = `${this.url}/properties/${resource}.json`;
-    let IdUrl = `${this.url}/properties/${resource}/${_id}.json`;
+    let propertiesByOwnerUrl = `${this.url}/properties/${resource}.json`;
+    let propertyByOwnerAndIdUrl = `${this.url}/properties/${resource}/${_id}.json`;
     let DetailsUrl = `${this.url}/properties/${resource}/${_id}.json`;
     let favoriteUrl = `${this.url}/favorites/${resource}.json`;
     let deleteFavoriteUrl = `${this.url}/favorites/${resource}/${_id}.json`;
 
 
 
-    const auth = sessionStorage.getItem('auth');
+    const auth = localStorage.getItem('auth');
     auth ? catalogUrl += `?auth=${JSON.parse(auth).idToken}` : catalogUrl;
-    auth ? IdUrl += `?auth=${JSON.parse(auth).idToken}` : IdUrl;
+    auth ? propertyByOwnerAndIdUrl += `?auth=${JSON.parse(auth).idToken}` : propertyByOwnerAndIdUrl;
     auth ? favoriteUrl += `?auth=${JSON.parse(auth).idToken}` : favoriteUrl;
     auth ? deleteFavoriteUrl += `?auth=${JSON.parse(auth).idToken}` : deleteFavoriteUrl;
 
@@ -36,8 +36,8 @@ export class CatalogService {
     return {
       baseUrl,
       catalogUrl,
-      ownerUrl,
-      IdUrl,
+      propertiesByOwnerUrl,
+      propertyByOwnerAndIdUrl,
       DetailsUrl,
       favoriteUrl,
       deleteFavoriteUrl
@@ -54,7 +54,7 @@ export class CatalogService {
   }
 
   getMy(_id: string) {
-    return this.http.get<IProperty[]>(`${this.urlBuilder(_id).ownerUrl}`, { withCredentials: false });
+    return this.http.get<IProperty[]>(`${this.urlBuilder(_id).propertiesByOwnerUrl}`, { withCredentials: false });
   }
 
   getById(_ownerId: string, _id: string) {
@@ -63,12 +63,12 @@ export class CatalogService {
   }
 
   delete(_ownerId: string, _id: string) {
-    return this.http.delete<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`)
+    return this.http.delete<IProperty>(`${this.urlBuilder(_ownerId, _id).propertyByOwnerAndIdUrl}`)
 
   }
 
   edit(_ownerId: string, _id?: string, data?: {}) {
-    return this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).IdUrl}`, data)
+    return this.http.patch<IProperty>(`${this.urlBuilder(_ownerId, _id).propertyByOwnerAndIdUrl}`, data)
 
   }
 

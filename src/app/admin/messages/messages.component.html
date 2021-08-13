@@ -1,6 +1,8 @@
 <div class="container">
     <div class="profile-messages">
-        <h2>Messages</h2>
+        <div class="messages-title">
+            <h2>Messages</h2>
+          </div>
         <div *ngIf="messages">
             <app-message-item *ngFor="let message of messages" [message]="message"></app-message-item>
         </div>

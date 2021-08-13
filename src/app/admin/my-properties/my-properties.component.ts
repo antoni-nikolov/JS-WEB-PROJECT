@@ -8,9 +8,11 @@ import { UserService } from 'src/app/user-service.service';
 @Component({
   selector: 'app-my-properties',
   templateUrl: './my-properties.component.html',
-  styleUrls: ['./my-properties.component.scss']
+  styleUrls: ['./my-properties.component.scss'],
+  
 })
 export class MyPropertiesComponent implements OnDestroy {
+
   properties!: IProperty[] | null;
   localId!: string;
   myProperties!: string | undefined;
@@ -30,35 +32,23 @@ export class MyPropertiesComponent implements OnDestroy {
     }
     
   }
+
   getMyProperties(): void {
     this.catalogService.getMy(this.localId).subscribe(data => this.convertData(data));
   }
 
-  convertData(data: any) {
+  convertData(data: any) {    
     if (data) {
       this.properties = Object.keys(data).map(key => ({ _id: key, ...data[key]}));
+    } else {
+      this.properties = null;
     }
   }
 
-  deleteProperty(_ownerId:string, id:string): void {
-    console.log('Delete it WORKS');
-    
-    let localId = this.userService.getUserData().localId;
-
-    if (_ownerId === localId) {
-      this.catalogService.delete(_ownerId, id).subscribe({
-        next: () => {},
-        error: (err) => {
-          console.log(err)
-        }
-      });
-    }
-    
+  propertyDeleted(){
+    this.getMyProperties();
   }
 
-  ngOnDestroy(): void{
-  
-    
-  }
+  ngOnDestroy(): void{}
 
 }

@@ -27,7 +27,7 @@ export class RegisterComponent {
     
     this.userService.register(name, email, password, phoneNumber)
     .pipe(
-      tap(x => sessionStorage.setItem('auth', JSON.stringify(x)))
+      tap(x => localStorage.setItem('auth', JSON.stringify(x)))
       )
       .subscribe({
         next: () => {

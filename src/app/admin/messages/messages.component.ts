@@ -24,7 +24,7 @@ export class MessagesComponent implements OnInit {
 
   }
 
-  messageHandler(){
+  messageHandler(): void{
     this.messageService.getAllMessage(this.localId)
     .subscribe(data => this.messages = this.messages = Object.values(data)[0].messages)
   }
