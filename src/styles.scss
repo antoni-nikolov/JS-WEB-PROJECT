@@ -22,14 +22,14 @@ body{
 .container-properties{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 57px auto 32px;
+  margin: 57px auto 57px;
   padding: 0 16px;
   max-width: 1270px;
 }
 .container-properties-home{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 57px auto 32px;
+  margin: 57px auto 57px;
   padding: 0 16px;
   max-width: 1270px;
 }
@@ -80,13 +80,13 @@ svg.material-icons:not(:last-child) {
 }
 
 .errors{
-  padding: 20px;
+  padding: 23px;
   float: right;
   border: 1px solid #ffe270;
   width: 20%;
   border-radius: 15px;
   color: #ffe270;
-  margin: 0 20px;
+  margin: 100px 20px;
   background: #15294d;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }

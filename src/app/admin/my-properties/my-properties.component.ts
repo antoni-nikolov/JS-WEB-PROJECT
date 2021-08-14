@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CatalogService } from 'src/app/catalog-service';
 import { IProperty } from 'src/app/shared/interfaces/property';
 import { UserService } from 'src/app/user-service.service';
@@ -12,6 +13,8 @@ import { UserService } from 'src/app/user-service.service';
   
 })
 export class MyPropertiesComponent implements OnDestroy {
+
+  subscription = new Subscription();
 
   properties!: IProperty[] | null;
   localId!: string;
@@ -34,7 +37,8 @@ export class MyPropertiesComponent implements OnDestroy {
   }
 
   getMyProperties(): void {
-    this.catalogService.getMy(this.localId).subscribe(data => this.convertData(data));
+    this.subscription.add(
+    this.catalogService.getMy(this.localId).subscribe(data => this.convertData(data)));
   }
 
   convertData(data: any) {    
@@ -49,6 +53,8 @@ export class MyPropertiesComponent implements OnDestroy {
     this.getMyProperties();
   }
 
-  ngOnDestroy(): void{}
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+  }
 
 }

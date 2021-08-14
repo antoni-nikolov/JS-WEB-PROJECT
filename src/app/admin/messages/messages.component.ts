@@ -1,5 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/message.service';
 import { IMessage } from 'src/app/shared/interfaces/message';
 import { UserService } from 'src/app/user-service.service';
@@ -9,7 +9,9 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesComponent {
+export class MessagesComponent implements OnDestroy{
+  
+  subscription = new Subscription();
 
   localId!: string;
   messages!: IMessage[] | null;
@@ -25,6 +27,7 @@ export class MessagesComponent {
   }
 
   messageHandler(): void{
+    this.subscription.add(
     this.messageService.getAllMessages(this.localId)
     .subscribe({
       next: (data) => {
@@ -33,7 +36,7 @@ export class MessagesComponent {
       error: (err) => {
         console.log(err);
       }
-    })
+    }));
   }
 
   convertData(data: any) {    
@@ -49,7 +52,9 @@ export class MessagesComponent {
   }
 
 
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
 
   
 

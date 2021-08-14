@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CatalogService } from 'src/app/catalog-service';
 import { UserService } from 'src/app/user-service.service';
 
@@ -10,9 +11,10 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy{
 
- 
+  subscription = new Subscription();
+
   favoriteSeason!: string;
   labels: string[] = ['Exclusive', 'Featured'];
   categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
@@ -35,6 +37,7 @@ export class CreateComponent implements OnInit {
     const data = form.value
     const localId = this.userService.getUserData().localId;
 
+    this.subscription.add(
     this.catalogService.create(data, localId)
       .subscribe({
       next: () => {
@@ -46,7 +49,10 @@ export class CreateComponent implements OnInit {
           this.userService.logout()
         }
       }
-    })
-    
+    }));
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 }

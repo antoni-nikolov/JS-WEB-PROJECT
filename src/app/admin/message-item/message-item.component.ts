@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/message.service';
 import { IMessage } from 'src/app/shared/interfaces/message';
 import { UserService } from 'src/app/user-service.service';
@@ -8,7 +9,10 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './message-item.component.html',
   styleUrls: ['./message-item.component.scss']
 })
-export class MessageItemComponent {
+export class MessageItemComponent implements OnDestroy{
+  
+  subscription = new Subscription();
+
   @Input() message?: IMessage
   @Output() messageWasDeleted = new EventEmitter();
   @Output() messageWasReaded = new EventEmitter();
@@ -25,6 +29,7 @@ export class MessageItemComponent {
 
 
   deleteMessageHandler(messageId: string | undefined){
+    this.subscription.add(
     this.messageService.deleteMessage(this.localId, messageId!)
     .subscribe({
       next: () => {},
@@ -32,17 +37,22 @@ export class MessageItemComponent {
       complete: () => {
         this.messageWasDeleted.emit()
       }
-    })
+    }));
   }
 
   readMessageHandler(messageId: string | undefined){
+    this.subscription.add(
     this.messageService.reedMessage(this.localId, messageId!).subscribe({
       next: () => {},
       error: () => {},
       complete: () => {
         this.messageWasReaded.emit()
       }
-    })  
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
   
 

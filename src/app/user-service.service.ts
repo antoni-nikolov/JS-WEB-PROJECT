@@ -1,15 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IUser } from './shared/interfaces/user';
 import { IUserDB } from './shared/interfaces/userDB';
 
 @Injectable()
 
-export class UserService {
+export class UserService implements OnDestroy {
+
+  subscription = new Subscription();
 
   apiKey: string = 'AIzaSyB_k4wGL6FPlaBkB4U6e5rGzR9zuIYNm2A';
   registerUrl: string = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
   loginUrl: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`;
+  update: string = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${this.apiKey}`
 
 
   constructor(
@@ -80,12 +84,17 @@ export class UserService {
       phoneNumber,
       messages: [] = [{email: 'support@dreamproperty.com', name: "Dream Property Team", message: 'Hello, welcome to Dreem Property!'}]
     }
-    this.http.post<IUser>(url, userData).subscribe();    
+    this.subscription.add(
+    this.http.post<IUser>(url, userData).subscribe());    
   }
 
   getUserFromDb(_id:string){
     let url: string = `https://dream-property-508d3-default-rtdb.europe-west1.firebasedatabase.app/users/${_id}.json`;
     return this.http.get<IUserDB>(url)
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 
 }

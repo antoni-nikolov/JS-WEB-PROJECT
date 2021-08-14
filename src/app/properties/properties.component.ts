@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CatalogService } from '../catalog-service';
 
 
@@ -8,14 +9,15 @@ import { CatalogService } from '../catalog-service';
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.scss']
 })
-export class PropertiesComponent {
+export class PropertiesComponent implements OnDestroy{
 
   properties!: [] | null;
   categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
   noSearchResults!: boolean;
   queryParam!: string | undefined
 
-  
+  subscription = new Subscription();
+
   constructor(
     private catalogService: CatalogService,
     private route: ActivatedRoute,
@@ -29,13 +31,14 @@ export class PropertiesComponent {
    }
 
   getAllProperties(): void {
-    this.catalogService.getAll().subscribe(data => this.convertData(data));
+    this.subscription.add(
+    this.catalogService.getAll()
+    .subscribe(data => this.convertData(data))
+    );
   }
 
   convertData<T>(data: T): void{
-
     let currentData: any = []
-
     if (data) {
       let result = Object.entries(data)
 
@@ -44,14 +47,13 @@ export class PropertiesComponent {
           currentData.push(Object.assign({_id: key}, el[1][key]))
         }   
       });
-      
       this.properties = currentData; 
     }
   }
   
   
   searchHandler(search: HTMLInputElement): void{
-
+    this.subscription.add(
     this.catalogService.getAll().subscribe({
       next: (data) => {
         this.convertData(data)
@@ -72,12 +74,13 @@ export class PropertiesComponent {
           this.noSearchResults = false      
         } 
       }
-    });
+    }));
 
     
   }
 
   findByCategory(category: string){
+    this.subscription.add(
     this.catalogService.getAll().subscribe({
       next: (data) => {
         this.convertData(data)
@@ -96,13 +99,17 @@ export class PropertiesComponent {
         }
         
       }
-    });
+    }));
     
     
   }
-  allPropertiesHandler(search: HTMLInputElement){
+  allPropertiesHandler(search: HTMLInputElement): void{
     search.value = '';
     this.getAllProperties(); 
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe()
   }
 
 }

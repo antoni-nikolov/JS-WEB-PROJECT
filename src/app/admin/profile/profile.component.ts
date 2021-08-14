@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IUserDB } from 'src/app/shared/interfaces/userDB';
 import { UserService } from 'src/app/user-service.service';
 
@@ -7,7 +8,10 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnDestroy {
+
+  subscription = new Subscription();
+
 
   localId!: string;
   userInfo!: IUserDB;
@@ -20,8 +24,14 @@ export class ProfileComponent {
   }
   
   userData(localId: string){
+    this.subscription.add(
     this.userService.getUserFromDb(localId)
-    .subscribe(data => this.userInfo = Object.values(data)[0])
+    .subscribe(data => this.userInfo = Object.values(data)[0]));
+   }
+
+
+   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
    }
 
 }

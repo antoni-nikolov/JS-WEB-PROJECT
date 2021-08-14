@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserService } from '../../user-service.service';
 
@@ -9,7 +10,9 @@ import { UserService } from '../../user-service.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy{
+
+  subscription = new Subscription();
 
   error!: string | null
 
@@ -24,7 +27,7 @@ export class RegisterComponent {
     if (form.invalid) { return; }
     
     const { name, email, password, phoneNumber } = form.value;
-    
+    this.subscription.add(
     this.userService.register(name, email, password, phoneNumber)
     .pipe(
       tap(x => localStorage.setItem('auth', JSON.stringify(x)))
@@ -43,13 +46,12 @@ export class RegisterComponent {
         this.error! = currentError! 
       }
 
-    });
+    }));
   }
-
-  uploadImageHandler(){
-    console.log('UPLOAD')
+  
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
-
 
 
 }

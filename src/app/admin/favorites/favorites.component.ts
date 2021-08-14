@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CatalogService } from 'src/app/catalog-service';
 import { IProperty } from 'src/app/shared/interfaces/property';
 import { UserService } from 'src/app/user-service.service';
@@ -9,7 +10,10 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnDestroy {
+
+  subscription = new Subscription();
+
 
   properties!: IProperty[] | null;
   localId!: string;
@@ -30,6 +34,7 @@ export class FavoritesComponent {
   }
 
   favoritePropertiesHandler(): void {
+    this.subscription.add(
     this.catalogService.getFavorite(this.localId)
       .subscribe({
         next: (data) => {
@@ -42,19 +47,15 @@ export class FavoritesComponent {
         error: (err) => {
           console.log(err)
         }
-      });
+      }));
   }
 
   deletedFavoriteProperty() {
     this.favoritePropertiesHandler();
   }
 
-  //convertData(data: any): void {
-  //  if (data) {
-  //    this.properties = Object.keys(data).map(key => ({ _id: key, ...data[key] }));
-  //  } else {
-  //    this.properties = null;
-  //  }
-  //}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 }

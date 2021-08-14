@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CatalogService } from 'src/app/catalog-service';
 import { IProperty } from 'src/app/shared/interfaces/property';
 import { UserService } from 'src/app/user-service.service';
@@ -10,15 +11,18 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnDestroy {
+
+  subscription = new Subscription();
 
   labels: string[] = ['Exclusive', 'Featured'];
   categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
 
-  property!: IProperty
-  _ownerId!: string
-  _id!: string
-  localId!: string
+  property!: IProperty;
+  _ownerId!: string;
+  _id!: string;
+  localId!: string;
+  error!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,11 +38,10 @@ export class EditComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-  }
 
   getProperty():void{
-    this.catalogService.getById(this._ownerId, this._id).subscribe(data => this.property = data)
+    this.subscription.add(
+    this.catalogService.getById(this._ownerId, this._id).subscribe(data => this.property = data));
   }
 
   onEditSubmit(form: NgForm): void {
@@ -46,20 +49,26 @@ export class EditComponent implements OnInit {
     if (form.invalid) { return; }
 
     if (this._ownerId === this.localId) {
-      const data = form.value
 
+      const data = form.value
+      this.subscription.add(
       this.catalogService.edit(this._ownerId, this._id, data)
       .subscribe({
         next: () => {
           this.router.navigate(['/dashboard/my-properties']);
         },
         error:(err) => {
-          //TODO.... SHOW ERRORS
-          console.error(err);
+          if (err.status == 401) {
+            this.error = 'Your session has expired!';
+            this.userService.logout()
+          }
         }
-      })
-      
+      }));
     }
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 
 }

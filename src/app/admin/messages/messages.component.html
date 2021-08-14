@@ -2,6 +2,9 @@
     <div class="profile-messages">
         <div class="messages-title">
             <h2>Messages</h2>
+            <div *ngIf="!messages" class="missing-properties-message">
+                <h2>You still don't have any massages...</h2>
+              </div>
           </div>
         <div *ngIf="messages">
             <app-message-item *ngFor="let message of messages" [message]="message" (messageWasDeleted)="refreshMessages()" (messageWasReaded)="refreshMessages()"></app-message-item>

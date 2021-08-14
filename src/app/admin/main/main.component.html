@@ -3,11 +3,11 @@
     <div class="dashboard-user">
       <div class="dashboard-user-image-container">
         <img mat-card-image class="dashboard-user-image"
-          src="https://i.pinimg.com/originals/45/6f/30/456f302bf3a276d1c9d6917d6d56d0dd.jpg" alt="Photo of a Shiba Inu">
+          src="http://localhost:4200/assets/profile-image.jpg" alt="user image">
       </div>
       <div class="dashboard-user-info">
-        <h3 class="dashbord-user-name">{{username}}</h3>
-        <p class="dashbord-user-email">{{userEmail}}</p>
+        <h3 class="dashbord-user-name">{{userData?.displayName}}</h3>
+        <p class="dashbord-user-email">{{userData?.email}}</p>
       </div>
       <button routerLink="/dashboard/create" mat-raised-button color="accent">Submit Add</button>
     </div>
@@ -39,5 +39,4 @@
   <div class="dashboard-content">
     <router-outlet></router-outlet>
   </div>
-
 </div>

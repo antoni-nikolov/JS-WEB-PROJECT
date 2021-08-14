@@ -50,7 +50,8 @@ export class CatalogService {
   }
 
   getAll() {
-    return this.http.get<IProperty[]>(`${this.urlBuilder('properties').baseUrl}`, { withCredentials: false });
+    return this.http.get<IProperty[]>(`${this.urlBuilder('properties').baseUrl}`, 
+    );
   }
 
   getMy(_id: string) {
