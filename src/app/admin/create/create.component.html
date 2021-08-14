@@ -1,7 +1,10 @@
 <div class="container">
+  <div class="errors" *ngIf="error">
+    <h2>{{error}} <a routerLink="/login">Login</a></h2>
+    
+  </div>
   <div class="create-wrapper">
     <h2>Add Property</h2>
-
     <div class="login-form">
 
       <form #form="ngForm" (ngSubmit)="onCreateSubmit(form)">
@@ -65,18 +68,26 @@
             <mat-hint *ngIf="imageUrlInput.invalid && imageUrlInput.touched" class="formError">Image URL is required!</mat-hint>
           </mat-form-field>
         </div>
-        <label id="example-radio-group-label">Pick property label</label>
+        <label id="label"><h3>Pick property label</h3></label>
         <div>
-          <mat-radio-group aria-labelledby="example-radio-group-label" name="label" ngModel>
-            <mat-radio-button class="radio-btn" *ngFor="let label of labels" [value]="label" requred>
+          <mat-radio-group aria-labelledby="label" name="label" ngModel requred>
+            <mat-radio-button class="radio-btn" *ngFor="let label of labels" [value]="label">
               {{label}}
             </mat-radio-button>
           </mat-radio-group>
         </div>
+        <div style="padding: 30px;">
+          <label id="category"><h3>Select category</h3></label>
+          <div >
+            <mat-radio-group aria-labelledby="category" name="category" ngModel requred>
+              <mat-radio-button class="radio-btn" *ngFor="let category of categories" [value]="category" >
+                {{category}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
         <button class="create-btn" mat-raised-button color="primary"> Create </button>
-
       </form>
-
     </div>
   </div>
 </div>

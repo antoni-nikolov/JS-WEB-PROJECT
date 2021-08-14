@@ -20,7 +20,9 @@ export class DetailsComponent implements OnInit {
   data!: any
   property!: IProperty
   ownerData!: IUserDB
-  @Input() messageWasSend!: string | null
+
+  messageWasSend!: string | null
+  notSendMessage!: string | null
 
 
   constructor(
@@ -28,14 +30,17 @@ export class DetailsComponent implements OnInit {
     private catalogService: CatalogService,
     private userService: UserService,
     private messageService: MessageService
-  ) { }
-
-  ngOnInit(): void {
+  ) { 
 
     const data = this.route.snapshot.params;
     this.data = data;
     this.getProperty()
 
+  }
+
+  ngOnInit(): void {
+
+    
   }
 
   getProperty(): void {
@@ -52,16 +57,23 @@ export class DetailsComponent implements OnInit {
       .subscribe(data => this.ownerData = Object.values(data)[0])
   }
 
-  sendMessage(form: NgForm): void {
+  messageHandler(form: NgForm): void {
     if (form.invalid) { return; }
     const { name, email, message } = form.value
     const ownerId = this.property._ownerId;
 
-    this.messageService.currentOwner(ownerId, name, email, message)
-    this.messageWasSend = 'The message has been sent!'
-
+    this.messageService.sendMessage(ownerId, name, email, message)
+    .subscribe({
+      next: () => {
+        this.messageWasSend = 'The message has been sent!'
+      },
+      error: (err) => {
+        if (err.status == 401) {
+          this.notSendMessage = 'You must be a logged user!';
+        }
+      }
+    })
     form.resetForm()
-
   }
 
 }

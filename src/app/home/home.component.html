@@ -5,7 +5,7 @@
     <p>Explore by Property Type:</p>
 
     <div class="card-container">
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+      <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'house'}">
         <svg class="material-icons" id="Outline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.03 464">
           <path
             d="M472,417q0-.51,0-1a32,32,0,0,0-32-32V236l28.8-21.6a8,8,0,0,0-.08-12.86L400,151.32V64a8,8,0,0,0,8-8V24a8,8,0,0,0-8-8H320a8,8,0,0,0-8,8V56a8,8,0,0,0,8,8V92.86L260.72,49.54a8,8,0,0,0-9.44,0l-208,152a8,8,0,0,0-.08,12.86L72,236V384a32,32,0,0,0-32,32q0,.5,0,1a32,32,0,0,0,8,63H464a32,32,0,0,0,8-63ZM328,32h64V48H328Zm8,72V64h48v75.63L335.24,104ZM256,65.91,450.55,208.08l-18.63,14L260.71,97.53a8,8,0,0,0-9.41,0L80.07,222.06l-18.63-14ZM32,448a16,16,0,0,1,15.76-16h0c.41.06.82.11,1.24.13a8,8,0,0,0,8-10.72A15.73,15.73,0,0,1,56,416a16,16,0,0,1,16-16v64H48A16,16,0,0,1,32,448Zm344,16H280V288h96Zm16,0V280a8,8,0,0,0-8-8H272a8,8,0,0,0-8,8V464H88V236.07L256,113.89,424,236.07V464Zm72,0H440V400a16,16,0,0,1,16,16,15.73,15.73,0,0,1-1,5.42,8,8,0,0,0,8,10.72c.42,0,.83-.08,1.23-.13h0a16,16,0,0,1-.24,32Z"
@@ -16,7 +16,7 @@
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
         </svg> </a>
 
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
+          <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'apartment'}">
         <svg class="material-icons" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512">
           <defs>
@@ -36,7 +36,7 @@
         </svg>
       </a>
 
-      <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
+          <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'villas'}">
         <svg class="material-icons" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 479.91">
           <defs>
@@ -56,7 +56,7 @@
         </svg>
       </a>
 
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
+          <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'hotels'}">
         <svg class="material-icons" id="Solid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 464 456">
           <defs>
             <style>
@@ -75,7 +75,7 @@
         </svg>
       </a>
 
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
+          <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'restaurant'}">
         <svg class="material-icons" id="Outline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 464 480">
           <path
             d="M48,272H90.52a23.83,23.83,0,0,0,6.39,25.69l65.68,60.2h0c.05,0,.1.11.16.15l103.79,90H264a8,8,0,0,0-8,8v32a8,8,0,0,0,8,8h96a8,8,0,0,0,8-8V456a8,8,0,0,0-8-8V435.31l4.28-4.28A39.74,39.74,0,0,0,376,402.75v-49l29-63.8a23.88,23.88,0,0,0,.78-17.93H464a24,24,0,0,0,24-24V232a8,8,0,0,0-8-8H448v-8c0-92.64-75.36-168-168-168V32h8a8,8,0,0,0,0-16H224a8,8,0,0,0,0,16h8V48C139.36,48,64,123.36,64,216v8H32a8,8,0,0,0-8,8v16A24,24,0,0,0,48,272Zm57.68,5.1a7.82,7.82,0,0,1,7.46-5.1h4.57a8,8,0,0,1,7.28,4.69l6,13.23h0l13.48,29.65L107.73,285.9A7.82,7.82,0,0,1,105.68,277.1ZM352,480H272V464h80Zm37.88-204.33a7.86,7.86,0,0,1,.56,7.64l-29.72,65.38A8,8,0,0,0,360,352v50.74a23.85,23.85,0,0,1-7,17l-6.63,6.63A8,8,0,0,0,344,432v16H291L174.56,347.1l-29-63.79A8,8,0,0,1,152.85,272h5.26a8,8,0,0,1,7.16,4.42l27.58,55.16a8,8,0,0,0,4.18,3.85l80,32a8,8,0,0,0,4.91.33l32-8a8,8,0,0,0,5.08-3.93l43.45-79.66a8,8,0,0,1,7-4.17h13.65A7.86,7.86,0,0,1,389.88,275.67ZM180.94,272H346.52l-39.87,73.09-26.09,6.52L205.8,321.7ZM248,32h16V48H248ZM80,216c0-83.81,68.19-152,152-152h48c83.81,0,152,68.19,152,152v8H80ZM40,240H472v8a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8Z"
@@ -87,7 +87,7 @@
         </svg>
       </a>
 
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
+          <a class="card" [routerLink]="['/properties']" [queryParams]="{search: 'plots'}">
         <svg class="material-icons" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 390">
           <path

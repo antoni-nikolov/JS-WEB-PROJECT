@@ -4,7 +4,7 @@
             <h2>Messages</h2>
           </div>
         <div *ngIf="messages">
-            <app-message-item *ngFor="let message of messages" [message]="message"></app-message-item>
+            <app-message-item *ngFor="let message of messages" [message]="message" (messageWasDeleted)="refreshMessages()" (messageWasReaded)="refreshMessages()"></app-message-item>
         </div>
     </div>
 </div>

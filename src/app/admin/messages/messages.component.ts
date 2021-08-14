@@ -9,10 +9,10 @@ import { UserService } from 'src/app/user-service.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent {
 
   localId!: string;
-  messages!: IMessage[];
+  messages!: IMessage[] | null;
 
   constructor(
     private userService: UserService,
@@ -25,13 +25,32 @@ export class MessagesComponent implements OnInit {
   }
 
   messageHandler(): void{
-    this.messageService.getAllMessage(this.localId)
-    .subscribe(data => this.messages = this.messages = Object.values(data)[0].messages)
+    this.messageService.getAllMessages(this.localId)
+    .subscribe({
+      next: (data) => {
+        this.messages = this.convertData(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
-  ngOnInit(): void {
-    
+  convertData(data: any) {    
+    if (data) {
+      return Object.keys(data).map(key => ({ _id: key, ...data[key]}));
+    } else {
+      return null;
+    }
   }
+
+  refreshMessages(){
+    this.messageHandler();    
+  }
+
+
+
+
   
 
 }

@@ -13,6 +13,7 @@ import { UserService } from 'src/app/user-service.service';
 export class EditComponent implements OnInit {
 
   labels: string[] = ['Exclusive', 'Featured'];
+  categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
 
   property!: IProperty
   _ownerId!: string

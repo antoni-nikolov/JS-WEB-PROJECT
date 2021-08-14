@@ -15,6 +15,9 @@ export class CreateComponent implements OnInit {
  
   favoriteSeason!: string;
   labels: string[] = ['Exclusive', 'Featured'];
+  categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
+
+  error!: string
 
 
   constructor(
@@ -38,7 +41,10 @@ export class CreateComponent implements OnInit {
         this.router.navigate(['/dashboard/my-properties']);
       },
       error:(err) => {
-        console.error(err);
+        if (err.status == 401) {
+          this.error = 'Your session has expired!';
+          this.userService.logout()
+        }
       }
     })
     

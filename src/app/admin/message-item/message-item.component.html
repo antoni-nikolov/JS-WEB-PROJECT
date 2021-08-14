@@ -1,8 +1,10 @@
 
-<mat-card [class]="classes">
+<mat-card class="{{message?.class}}">
     <div class="message-owner-info">
         <span class="message-owner">From: {{message?.name}}</span>
         <span class="message-owner">Email: {{message?.email}}</span>
+        <button (click)="deleteMessageHandler(message?._id)" style="float: right;" mat-raised-button color="warn"> DELETE </button>
+        <button *ngIf="message?.class != 'reed-message'" (click)="readMessageHandler(message?._id)" style="float: right; margin-right: 10px;" mat-raised-button color="primary"> REED </button>
     </div>
     <p class="message-message">Message: {{message?.message}}</p>
 </mat-card>

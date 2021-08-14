@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from '../catalog-service';
 
 
@@ -10,12 +11,20 @@ import { CatalogService } from '../catalog-service';
 export class PropertiesComponent {
 
   properties!: [] | null;
+  categories: string[] = ['House', 'Apartment', 'Villas', 'Restaurant', 'Hotels', 'Plots'];
+  noSearchResults!: boolean;
+  queryParam!: string | undefined
+
   
   constructor(
     private catalogService: CatalogService,
+    private route: ActivatedRoute,
     ) {
       
+    this.queryParam = route.snapshot.queryParams.search
     this.getAllProperties();
+   
+    if (this.queryParam) { this.findByCategory(this.queryParam!); }
     
    }
 
@@ -42,17 +51,57 @@ export class PropertiesComponent {
   
   
   searchHandler(search: HTMLInputElement): void{
-    const query = search.value;
-    let currentData = this.properties
 
-    if (currentData) {
-      const filterData: any = currentData.filter((x: any ) => x.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
-      this.properties = filterData;      
-    }
+    this.catalogService.getAll().subscribe({
+      next: (data) => {
+        this.convertData(data)
+      },
+      error: (err) => {console.log(err)},
+      complete: () => {
+        
+        let currentData = this.properties
+        if (currentData) {
+          const filterData: any = currentData.filter((x: any ) => x.title.toLocaleLowerCase().includes(search.value.toLocaleLowerCase()));
+          if (filterData.length == 0) {
+            this.properties = null; 
+            this.noSearchResults = true
+            return
+            
+          }
+          this.properties = filterData;
+          this.noSearchResults = false      
+        } 
+      }
+    });
+
     
   }
 
-  allPropertiesHandler(){
+  findByCategory(category: string){
+    this.catalogService.getAll().subscribe({
+      next: (data) => {
+        this.convertData(data)
+      },
+      error: (err) => {console.log(err)},
+      complete: () => {
+        let currentData = this.properties
+        if (currentData) {
+          const filterData: any = currentData.filter((x: any ) => x.category.toLocaleLowerCase() == category.toLocaleLowerCase());
+          if (filterData.length == 0) {
+            this.properties = null; 
+            return
+            
+          }
+          this.properties = filterData;      
+        }
+        
+      }
+    });
+    
+    
+  }
+  allPropertiesHandler(search: HTMLInputElement){
+    search.value = '';
     this.getAllProperties(); 
   }
 

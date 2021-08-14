@@ -46,6 +46,10 @@ export class RegisterComponent {
     });
   }
 
+  uploadImageHandler(){
+    console.log('UPLOAD')
+  }
+
 
 
 }

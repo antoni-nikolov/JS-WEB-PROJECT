@@ -1,5 +1,7 @@
-import { Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { MessageService } from 'src/app/message.service';
 import { IMessage } from 'src/app/shared/interfaces/message';
+import { UserService } from 'src/app/user-service.service';
 
 @Component({
   selector: 'app-message-item',
@@ -7,17 +9,40 @@ import { IMessage } from 'src/app/shared/interfaces/message';
   styleUrls: ['./message-item.component.scss']
 })
 export class MessageItemComponent {
-
   @Input() message?: IMessage
+  @Output() messageWasDeleted = new EventEmitter();
+  @Output() messageWasReaded = new EventEmitter();
 
-  classes = [
-    'unRead-message'
-  ]
-  constructor() {}
+  localId!: string;
+ 
 
-  seenHandler($event: any){
-    let parentElement = $event.target.parentElement;
-    
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService
+  ) {
+    this.localId = this.userService.getUserData().localId
+  }
+
+
+  deleteMessageHandler(messageId: string | undefined){
+    this.messageService.deleteMessage(this.localId, messageId!)
+    .subscribe({
+      next: () => {},
+      error: () => {},
+      complete: () => {
+        this.messageWasDeleted.emit()
+      }
+    })
+  }
+
+  readMessageHandler(messageId: string | undefined){
+    this.messageService.reedMessage(this.localId, messageId!).subscribe({
+      next: () => {},
+      error: () => {},
+      complete: () => {
+        this.messageWasReaded.emit()
+      }
+    })  
   }
   
 

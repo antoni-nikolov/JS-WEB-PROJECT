@@ -11,6 +11,7 @@ export interface IProperty {
     title: number
     label: string,
     _id: string
+    category: string
     
 }
 

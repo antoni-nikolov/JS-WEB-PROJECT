@@ -40,7 +40,7 @@
                 <h2>Reply to the listing </h2>
             </div>
             <div class="contact-with-owne-form">
-                <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+                <form #form="ngForm" (ngSubmit)="messageHandler(form)">
                     <p>
                         <mat-form-field style="width:100% !important" appearance="outline">
                             <mat-label>Name</mat-label>
@@ -65,8 +65,10 @@
                             <mat-hint *ngIf="messageInput.invalid && messageInput.touched" class="formError">Message is required!</mat-hint>
                         </mat-form-field>
                     </p>
-                    <button *ngIf="!messageWasSend"  mat-raised-button color="primary"> Send Message! </button>
+                    <button *ngIf="!messageWasSend && !notSendMessage"  mat-raised-button color="primary"> Send Message! </button>
                     <span *ngIf="messageWasSend" class="send-message-notification"> {{messageWasSend}} </span>
+                    <span *ngIf="notSendMessage" class="not-send-message-notification"> {{notSendMessage}} <a routerLink="/login">Login</a></span>
+
                 </form>
             </div>
         </div>

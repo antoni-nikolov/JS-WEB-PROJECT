@@ -22,6 +22,7 @@ import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from './message.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatFormFieldModule,
     HttpClientModule,
     FormsModule,
+    MatExpansionModule,
     AppRoutingModule,
      
   ],

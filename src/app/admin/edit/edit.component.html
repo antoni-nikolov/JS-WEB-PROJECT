@@ -67,13 +67,24 @@
               <mat-hint *ngIf="imageUrlInput.invalid && imageUrlInput.touched" class="formError">Image URL is required!</mat-hint>
             </mat-form-field>
           </div>
-          <label id="example-radio-group-label">Pick your property label</label>
+          <label id="example-radio-group-label"><h3>Pick your property label</h3></label>
           <div>
             <mat-radio-group aria-labelledby="example-radio-group-label" name="label" ngModel="{{property.label}}">
               <mat-radio-button class="radio-btn" *ngFor="let label of labels" [value]="label" requred>
                 {{label}}
               </mat-radio-button>
             </mat-radio-group>
+          </div>
+
+          <div style="padding: 30px;">
+            <label id="category"><h3>Select category</h3></label>
+            <div >
+              <mat-radio-group aria-labelledby="category" name="category" ngModel="{{property.category}}" requred>
+                <mat-radio-button class="radio-btn" *ngFor="let category of categories" [value]="category" >
+                  {{category}}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
           </div>
           <button class="create-btn" mat-raised-button color="primary"> Edit </button>
   
